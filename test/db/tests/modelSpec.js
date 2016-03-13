@@ -47,7 +47,7 @@ var setTables = function (cb) {
       cb();
     });
   });
-}
+};
 
 
 // setTables(function () {
@@ -77,7 +77,7 @@ var setTables = function (cb) {
 //   setTables(function () {
 //     seed(function () {
 //       done();
-//     }); 
+//     });
 //   });
 // });
 

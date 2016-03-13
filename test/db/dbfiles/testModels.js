@@ -1,4 +1,4 @@
-var db = require('./testdb.js');
+var db = require('./db.js');
 
 var User = db.Model.extend({
   tableName: 'users',
@@ -26,6 +26,9 @@ var Game = db.Model.extend({
   },
   responses: function () {
     return this.hasMany(User, 'current_game_id');
+  },
+  creator: function () {
+    return this.belongsTo(User, 'creator_id');
   }
 });
 
@@ -52,10 +55,20 @@ var Response = db.Model.extend({
   }
 });
 
+var UserGame = db.Model.extend({
+  tableName: 'users_games',
+  user: function () {
+    return this.belongsTo(Game, 'game_id');
+  },
+  game: function () {
+    return this.belongsTo(User, 'user_id');
+  }
+});
 
 module.exports = {
   User: User,
   Game: Game,
   Round: Round,
-  Response: Response
+  Response: Response,
+  UserGame: UserGame
 };
